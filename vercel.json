@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "app/routes/regional-demo.tsx": {
+      "runtime": "edge"
+    }
+  },
+  "regions": ["all"],
+  "headers": [
+    {
+      "source": "/regional-demo",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=60, stale-while-revalidate=300"
+        }
+      ]
+    }
+  ]
+} 

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
@@ -25,6 +26,41 @@ export function Welcome() {
               What&apos;s next?
             </p>
             <ul>
+              <li>
+                <Link
+                  to="/regional-demo"
+                  className="group flex items-center gap-3 self-stretch p-3 leading-normal text-purple-700 hover:underline dark:text-purple-400 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="stroke-purple-600 group-hover:stroke-current dark:stroke-purple-400"
+                  >
+                    <path
+                      d="M12 2L2 7L12 12L22 7L12 2Z"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M2 17L12 22L22 17"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M2 12L12 17L22 12"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  🌍 Vercel Regional Demo
+                </Link>
+              </li>
               {resources.map(({ href, text, icon }) => (
                 <li key={href}>
                   <a
