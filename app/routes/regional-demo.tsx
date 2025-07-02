@@ -61,7 +61,7 @@ export default function RegionalDemo({ loaderData }: Route.ComponentProps) {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold text-white mb-4">
               Vercel Regional Demo
             </h1>
             <p className="text-xl text-white/90">
