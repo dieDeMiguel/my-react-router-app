@@ -12,12 +12,11 @@ Skew protection prevents users from experiencing inconsistent behavior during de
 
 ```json
 {
-  "regions": ["all"],
-  "skewProtection": {
-    "enabled": true
-  }
+  "regions": ["all"]
 }
 ```
+
+**Note**: Vercel's skew protection is automatically enabled when available. No explicit configuration is needed in `vercel.json`.
 
 ### 2. Utility Functions (`app/utils/skew-protection.ts`)
 
@@ -72,6 +71,8 @@ The implementation checks for these Vercel environment variables:
 - `VERCEL_SKEW_PROTECTION_ENABLED`: Must be `'1'` to enable skew protection
 - `VERCEL_DEPLOYMENT_ID`: The unique deployment identifier
 
+**Note**: These environment variables are automatically set by Vercel when skew protection is available for your deployment.
+
 ## Testing
 
 ### Local Development
@@ -90,7 +91,7 @@ Once deployed to Vercel, the headers will be automatically added when skew prote
 curl -I https://your-app.vercel.app/api/skew-test
 ```
 
-You should see the `x-deployment-id` header in the response.
+You should see the `x-deployment-id` header in the response when skew protection is active.
 
 ## Example Routes
 
@@ -107,16 +108,17 @@ The home route demonstrates how to add skew protection to a regular page route.
 
 ## How It Works
 
-1. **Condition Check**: The utility functions check if `VERCEL_SKEW_PROTECTION_ENABLED === '1'` and `VERCEL_DEPLOYMENT_ID` exists
-2. **Header Addition**: If conditions are met, adds `x-deployment-id` header with the deployment ID
-3. **Vercel Processing**: Vercel's infrastructure uses this header to route subsequent requests to the same deployment
+1. **Automatic Enablement**: Vercel automatically enables skew protection when it's available for your deployment
+2. **Environment Detection**: The utility functions check if `VERCEL_SKEW_PROTECTION_ENABLED === '1'` and `VERCEL_DEPLOYMENT_ID` exists
+3. **Header Addition**: If conditions are met, adds `x-deployment-id` header with the deployment ID
+4. **Vercel Processing**: Vercel's infrastructure uses this header to route subsequent requests to the same deployment
 
 ## Benefits
 
 - **Consistency**: Users experience consistent behavior during deployments
 - **Reliability**: Prevents mixed-version responses that could cause errors
 - **Seamless Updates**: Deployments can roll out gradually without affecting active users
-- **Automatic**: Works automatically once configured, no manual intervention needed
+- **Automatic**: Works automatically once implemented, no manual configuration needed
 
 ## Comparison with Astro
 
@@ -129,4 +131,11 @@ if (skewProtection && process.env.VERCEL_SKEW_PROTECTION_ENABLED === '1') {
 }
 ```
 
-Our React Router implementation provides the same functionality through utility functions that can be used in loaders and actions. 
+Our React Router implementation provides the same functionality through utility functions that can be used in loaders and actions.
+
+## Important Notes
+
+- Skew protection is automatically managed by Vercel's infrastructure
+- No explicit configuration is required in `vercel.json`
+- The feature is enabled automatically when available for your deployment
+- Environment variables are set automatically by Vercel when the feature is active 

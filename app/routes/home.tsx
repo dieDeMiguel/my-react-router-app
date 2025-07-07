@@ -9,18 +9,21 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-// Example loader with skew protection headers
-export function loader({ request }: Route.LoaderArgs) {
-  // Create headers with skew protection
-  const headers = withSkewProtection();
+// Headers function to set skew protection headers for page responses
+export function headers({ parentHeaders }: Route.HeadersArgs) {
+  // Merge with parent headers to ensure skew protection is applied
+  const headers = withSkewProtection(parentHeaders);
   
-  // For data routes, we can return a Response with headers
-  return new Response(JSON.stringify({ message: "Hello from loader!" }), {
-    headers: {
-      ...Object.fromEntries(headers),
-      "Content-Type": "application/json",
-    },
-  });
+  // Add any route-specific headers here if needed
+  // headers.set("Cache-Control", "max-age=3600");
+  
+  return headers;
+}
+
+// Fixed loader to return proper data
+export function loader({ request }: Route.LoaderArgs) {
+  // This is a page route, so we just return data for the component
+  return { message: "Hello from loader!" };
 }
 
 export default function Home() {

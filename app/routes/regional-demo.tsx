@@ -1,10 +1,22 @@
 import type { Route } from "./+types/regional-demo";
+import { withSkewProtection } from "~/utils/skew-protection";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Vercel Regional Demo" },
     { name: "description", content: "Demo of Vercel's regional deployment capabilities" },
   ];
+}
+
+// Headers function to set skew protection headers for page responses
+export function headers({ parentHeaders }: Route.HeadersArgs) {
+  // Merge with parent headers to ensure skew protection is applied
+  const headers = withSkewProtection(parentHeaders);
+  
+  // Add any route-specific headers here if needed
+  // headers.set("Cache-Control", "max-age=3600");
+  
+  return headers;
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
