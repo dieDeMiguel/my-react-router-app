@@ -1,10 +1,5 @@
 {
   "regions": ["all"],
-  "functions": {
-    "app/entry.server.tsx": {
-      "includeFiles": "**"
-    }
-  },
   "skewProtection": {
     "enabled": true
   }
