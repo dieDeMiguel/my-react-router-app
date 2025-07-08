@@ -1,3 +1,4 @@
+import { vercelPreset } from "@vercel/react-router/vite";
 import type { Config } from "@react-router/dev/config";
 
 export default {
@@ -6,4 +7,6 @@ export default {
   ssr: true,
   // Configure for Vercel deployment
   serverBuildFile: "index.js",
+  // Add Vercel preset for proper integration
+  presets: [vercelPreset()],
 } satisfies Config;
