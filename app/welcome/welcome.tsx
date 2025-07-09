@@ -18,6 +18,7 @@ export function Welcome() {
               alt="React Router"
               className="hidden w-full dark:block"
             />
+            <h2>Test</h2>
           </div>
           <h2>Welcome to the React Router V7 App</h2>
         </header>
